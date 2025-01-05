@@ -16,11 +16,12 @@ mongoose
 app.get("/", async (req, res) => {
   try {
     const db = mongoose.connection.useDb("mernDb");
-    // const collection = db.collection("first");
-    // const data = await collection.find().toArray();
-    // console.log("fetched");
-    // res.status(200).json({ message: "Fetch successfull", data });
-    res.send("Data fetched");
+    const collection = db.collection("first");
+    const data = await collection.find().toArray();
+    console.log("fetched", data);
+    res.status(200).json({ message: "Fetch successfull", data });
+    // data.map((v, i) => {});
+    // res.send(`Data fetched ---${data}`);
   } catch (error) {
     console.log(error);
   }
